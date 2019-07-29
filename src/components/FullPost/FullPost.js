@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
-
+import axios from "axios";
 import './FullPost.css';
 
 class FullPost extends Component {
+
+    componentDidUpdate() {
+        if (this.props.id) {
+            axios.get("https://jsonplaceholder.typicode.com/posts/" + this.props.id)
+                .then(response => {
+                    console.log(response)
+                });
+        }
+    };
+    // Because we don't want the get method to trigger immediately, we place the if statement before to prevent any unnecesarry processing
+
     render() {
         let post = <p style={{ textAlign: "center", fontWeight: "bold" }}>Please select a Post!</p>;
         if (this.props.id) {
@@ -14,7 +25,6 @@ class FullPost extends Component {
                         <button className="Delete">Delete</button>
                     </div>
                 </div>
-
             );
         };
         return post;
