@@ -37,7 +37,7 @@ class Blog extends Component {
 
     postSelectedHandler = (id) => {
         this.setState({
-
+            selectedPostID: id
         })
     };
 
@@ -46,7 +46,7 @@ class Blog extends Component {
             return <Post
                 title={post.title}
                 author={post.author}
-                clicked={() => { this.postSelectedHandler() }}
+                clicked={() => { this.postSelectedHandler(post.id) }}
                 key={post.id}
             />
             // Because of the componentDidMount method called before the render method, we can now collect the data from the URL
@@ -60,7 +60,7 @@ class Blog extends Component {
                 </section>
                 <section>
                     <FullPost
-
+                        id={this.state.selectedPostID}
                     />
                 </section>
                 <section>
