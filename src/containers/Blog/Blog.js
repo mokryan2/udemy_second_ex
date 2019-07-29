@@ -7,9 +7,18 @@ import './Blog.css';
 
 class Blog extends Component {
 
+    state = {
+        posts: []
+    };
+
     componentDidMount() {
         axios.get("https://jsonplaceholder.typicode.com/posts")
             .then(response => {
+                this.setState = ({
+                    posts: response.data
+                });
+                // The change in state needs to be placed within the promise due to the fact the data is gathered asynchronously.
+                // If placed outside the promise it wont work b/c the data wouldn't have been collected yet!
                 console.log(response);
             });
     };
@@ -17,12 +26,19 @@ class Blog extends Component {
     // The fetching of data is considered a side effect because it's not neccesarrily triggering a rerender of the component; all that it's doing is updating data
 
     render() {
+        const posts = this.state.posts.map(post => {
+            return <Post
+                title={post.title}
+                key={post.id}
+            />
+            // Because of the componentDidMount method called before the render method, we can now collect the data from the URL
+            // What we then do after changing the state to include all the data from the URL is to save it into a new array to maintain immutable data and then map it out
+            // Finally, the mapped data is then utilized in the Post component by calling the data through the props method and then rendered via the constant posts
+        });
         return (
             <div>
                 <section className="Posts">
-                    <Post />
-                    <Post />
-                    <Post />
+                    {posts}
                 </section>
                 <section>
                     <FullPost />
