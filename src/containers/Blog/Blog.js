@@ -14,7 +14,7 @@ class Blog extends Component {
     componentDidMount() {
         axios.get("https://jsonplaceholder.typicode.com/posts")
             .then(response => {
-                this.setState = ({
+                this.setState({
                     posts: response.data
                 });
                 // The change in state needs to be placed within the promise due to the fact the data is gathered asynchronously.
