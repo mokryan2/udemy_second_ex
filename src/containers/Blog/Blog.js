@@ -8,7 +8,8 @@ import './Blog.css';
 class Blog extends Component {
 
     state = {
-        posts: []
+        posts: [],
+        selectedPostID: null
     };
 
     componentDidMount() {
@@ -34,11 +35,18 @@ class Blog extends Component {
     // We use the componentDidMount method b/c the http request is condiered as a "Side-effect"
     // The fetching of data is considered a side effect because it's not neccesarrily triggering a rerender of the component; all that it's doing is updating data
 
+    postSelectedHandler = (id) => {
+        this.setState({
+
+        })
+    };
+
     render() {
         const posts = this.state.posts.map(post => {
             return <Post
                 title={post.title}
                 author={post.author}
+                clicked={() => { this.postSelectedHandler() }}
                 key={post.id}
             />
             // Because of the componentDidMount method called before the render method, we can now collect the data from the URL
@@ -51,7 +59,9 @@ class Blog extends Component {
                     {posts}
                 </section>
                 <section>
-                    <FullPost />
+                    <FullPost
+
+                    />
                 </section>
                 <section>
                     <NewPost />
