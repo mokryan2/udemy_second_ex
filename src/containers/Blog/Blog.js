@@ -9,6 +9,9 @@ class Blog extends Component {
 
     componentDidMount() {
         axios.get("https://jsonplaceholder.typicode.com/posts")
+            .then(response => {
+                console.log(response);
+            });
     };
     // We use the componentDidMount method b/c the http request is condiered as a "Side-effect"
     // The fetching of data is considered a side effect because it's not neccesarrily triggering a rerender of the component; all that it's doing is updating data
