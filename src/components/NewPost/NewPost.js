@@ -7,11 +7,19 @@ class NewPost extends Component {
         title: '',
         content: '',
         author: 'Max'
-    }
+    };
 
     addPostHandler = () => {
-        axios.post();
-    }
+        const post = {
+            title: this.state.title,
+            content: this.state.content,
+            author: this.state.author
+        };
+        axios.post("https://jsonplaceholder.typicode.com/posts", post)
+            .then(response => {
+                console.log(response)
+            });
+    };
 
     render() {
         return (
