@@ -11,7 +11,7 @@ class FullPost extends Component {
     componentDidUpdate() {
         if (this.props.id) {
             if (!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.id)) {
-                axios.get("https://jsonplaceholder.typicode.com/posts/" + this.props.id)
+                axios.get("/posts/" + this.props.id)
                     .then(response => {
                         this.setState({
                             loadedPost: response.data
@@ -27,7 +27,7 @@ class FullPost extends Component {
     // Because we don't want the get method to trigger immediately, we place the if statement before to prevent any unnecesarry processing.
 
     deletePostHandler = () => {
-        axios.delete("https://jsonplaceholder.typicode.com/posts/" + this.props.id)
+        axios.delete("/posts/" + this.props.id)
             .then(response => {
                 console.log(response, "Oi where did the post go???")
             })

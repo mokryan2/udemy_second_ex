@@ -5,6 +5,9 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import axios from "axios";
 
+axios.defaults.baseURL = "https://jsonplaceholder.typicode.com"
+// An additional feature of axios is if the base URL is literally the same for everything, you can set the url as a global constant here
+
 axios.interceptors.request.use(request => {
     console.log(request)
     return request
