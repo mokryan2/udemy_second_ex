@@ -16,6 +16,7 @@ class NewPost extends Component {
             author: this.state.author
         };
         axios.post("/posts", post)
+            // Note: Normally the full url would be placed here (https://jsonplaceholder.typicode.com), but in this case we established a global URL in index.js that handles it form us
             .then(response => {
                 console.log(response)
             });

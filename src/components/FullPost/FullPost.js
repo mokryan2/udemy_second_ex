@@ -12,6 +12,7 @@ class FullPost extends Component {
         if (this.props.id) {
             if (!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.id)) {
                 axios.get("/posts/" + this.props.id)
+                    // Note: Normally the full url would be placed here (https://jsonplaceholder.typicode.com), but in this case we established a global URL in index.js that handles it form us
                     .then(response => {
                         this.setState({
                             loadedPost: response.data
@@ -28,6 +29,7 @@ class FullPost extends Component {
 
     deletePostHandler = () => {
         axios.delete("/posts/" + this.props.id)
+            // Note: Normally the full url would be placed here (https://jsonplaceholder.typicode.com), but in this case we established a global URL in index.js that handles it form us
             .then(response => {
                 console.log(response, "Oi where did the post go???")
             })

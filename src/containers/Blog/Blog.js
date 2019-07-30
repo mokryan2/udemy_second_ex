@@ -15,6 +15,7 @@ class Blog extends Component {
 
     componentDidMount() {
         axios.get("/posts")
+            // Note: Normally the full url would be placed here (https://jsonplaceholder.typicode.com), but in this case we established a global URL in index.js that handles it form us
             .then(response => {
                 const posts = response.data.splice(0, 8);
                 const updatedPosts = posts.map(post => {
