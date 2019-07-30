@@ -26,6 +26,15 @@ class FullPost extends Component {
     };
     // Because we don't want the get method to trigger immediately, we place the if statement before to prevent any unnecesarry processing.
 
+    deletePostHandler = () => {
+        axios.delete("https://jsonplaceholder.typicode.com/posts/" + this.props.id)
+            .then(response => {
+                console.log(response, "Oi where did the post go???")
+            })
+    };
+    // Much like the get specific post method, we need to target a specifc post ID as to delete the correct post.
+    // Seeing as how the method to get a specific post is already targeted and implemented above, the same url should work with the delete method
+
     render() {
         let post = <p style={{ textAlign: "center", fontWeight: "bold" }}>Please select a Post!</p>;
         if (this.props.id) {
@@ -37,7 +46,9 @@ class FullPost extends Component {
                     <h1>{this.state.loadedPost.title}</h1>
                     <p>{this.state.loadedPost.body}</p>
                     <div className="Edit">
-                        <button className="Delete">Delete</button>
+                        <button
+                            className="Delete"
+                            onClick={this.deletePostHandler}>Delete</button>
                     </div>
                 </div>
             );
