@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Posts from "./Posts/Posts"
 import './Blog.css';
 
 class Blog extends Component {
@@ -14,6 +15,7 @@ class Blog extends Component {
                         </ul>
                     </nav>
                 </header>
+                <Posts />
             </div>
         );
     }
