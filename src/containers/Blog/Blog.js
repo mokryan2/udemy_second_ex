@@ -69,7 +69,7 @@ class Blog extends Component {
         // It's always good to account for the possibility of an error because it'll allow the developer (i.e. you) to try and keep an eye on your code
 
         return (
-            <div>
+            <div className="Blog">
                 <header>
                     <nav>
                         <ul>
