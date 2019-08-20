@@ -18,6 +18,8 @@ class Blog extends Component {
                                 hash: "#submit",
                                 search: "?quick-subit=true"
                             }}>New Post</Link></li>
+                            {/* An important thing to note about this usage of the Link is that by not reloading the entirety of the page,
+                            the current state is maintained as only a specific part of the page is reloaded. Our state is now contained via this methodology! */}
                         </ul>
                     </nav>
                 </header>
