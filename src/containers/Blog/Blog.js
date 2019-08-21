@@ -41,7 +41,7 @@ class Blog extends Component {
                 </Switch>
                 {/* We use the Switch component to load only a SINGLE route of the given options that matches what is picked.
                 This prevents an issue we were having with FullPost and NewPost where the 2 components could be rendered at the same time!
-                ORDER IS STILL IMPORTANT HERE! NEVER FORGET THAT!!!;Also, you can technically place additional before or after the switch,
+                ORDER IS STILL IMPORTANT HERE! NEVER FORGET THAT!!!; Also, you can technically place additional routes before or after the switch,
                 but bear in mind it might require different handling to work. */}
             </div>
         );
