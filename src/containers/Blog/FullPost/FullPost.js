@@ -8,10 +8,12 @@ class FullPost extends Component {
         loadedPost: null
     }
 
-    componentDidUpdate() {
-        if (this.props.id) {
-            if (!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.id)) {
-                axios.get("/posts/" + this.props.id)
+    componentDidMount() {
+        if (this.props.match.params.id) {
+            // Because we nested the Post component in a Link component, the param needs to be retrieved in a different manner
+            // Additionally, we need to change to componentDidMount because it's loading a new route
+            if (!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.match.params.id)) {
+                axios.get("/posts/" + this.props.match.params.id)
                     // Note: Normally the full url would be placed here (https://jsonplaceholder.typicode.com), but in this case we established a global URL in index.js that handles it form us
                     .then(response => {
                         this.setState({
