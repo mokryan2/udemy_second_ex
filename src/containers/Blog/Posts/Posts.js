@@ -51,12 +51,15 @@ class Posts extends Component {
         if (!this.state.error) {
             posts = this.state.posts.map(post => {
                 return (
-                    <Link to={"/" + post.id}>
+                    <Link
+                        to={"/" + post.id}
+                        key={post.id}
+                    // It is important to note that the key value must always be on the outermost piece; you'll get errors if you don't do this...
+                    >
                         <Post
                             title={post.title}
                             author={post.author}
                             clicked={() => this.postSelectedHandler(post.id)}
-                            key={post.id}
                         />
                     </Link>)
                 // Because of the componentDidMount method called before the render method, we can now collect the data from the URL
