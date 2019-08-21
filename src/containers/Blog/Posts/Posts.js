@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "../../../axios";
 import Post from "../../../components/Post/Post";
+import { Link } from "react-router-dom";
 import "./Posts.css";
 
 class Posts extends Component {
@@ -49,12 +50,15 @@ class Posts extends Component {
         let posts = <p style={{ textAlign: "center" }}>Something went wrong (╯°w°)╯︵ ┻━┻</p>
         if (!this.state.error) {
             posts = this.state.posts.map(post => {
-                return <Post
-                    title={post.title}
-                    author={post.author}
-                    clicked={() => this.postSelectedHandler(post.id)}
-                    key={post.id}
-                />
+                return (
+                    <Link to={"/" + post.id}>
+                        <Post
+                            title={post.title}
+                            author={post.author}
+                            clicked={() => this.postSelectedHandler(post.id)}
+                            key={post.id}
+                        />
+                    </Link>)
                 // Because of the componentDidMount method called before the render method, we can now collect the data from the URL
                 // What we then do after changing the state to include all the data from the URL is to save it into a new array to maintain immutable data and then map it out
                 // Finally, the mapped data is then utilized in the Post component by calling the data through the props method and then rendered via the constant posts

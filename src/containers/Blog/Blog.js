@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Posts from "./Posts/Posts"
 import NewPost from "./NewPost/NewPost";
+import FullPost from "./FullPost/FullPost";
 import { Route, NavLink } from "react-router-dom";
 // While technically you could just use the regular Link from react-router-dom, NavLink allows for easier application of styles to a link by designating an
 // "active" class to said link. Additionally, you could also use your own styling as inline styling
@@ -35,7 +36,7 @@ class Blog extends Component {
                 </header>
                 <Route path="/" exact component={Posts} />
                 <Route path="/new-post" exact component={NewPost} />
-
+                <Route path="/:id" exact component={FullPost} />
             </div>
         );
     }
