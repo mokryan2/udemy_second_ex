@@ -16,6 +16,9 @@
     color:black
 }
 
-.Blog a:hover, a:active{
+.Blog a:hover, 
+.Blog a:active, 
+.Blog a.active{
     color: red;
 }
+

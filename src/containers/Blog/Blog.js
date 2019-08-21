@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Posts from "./Posts/Posts"
 import NewPost from "./NewPost/NewPost";
-import { Route, Link } from "react-router-dom";
+import { Route, NavLink } from "react-router-dom";
+// While technically you could just use the regular Link from react-router-dom, NavLink allows for easier application of styles to a link by designating an
+// "active" class to said link. Additionally, you could also use your own styling as inline styling
 import './Blog.css';
 
 class Blog extends Component {
@@ -12,12 +14,20 @@ class Blog extends Component {
                 <header>
                     <nav>
                         <ul>
-                            <li><Link to="/">Home</Link></li>
-                            <li><Link to={{
+                            <li><NavLink
+                                to="/"
+                                exact
+                                activeClassName="my-active"
+                                activeStyle={{
+                                    textDecoration: "underline",
+                                    color: "blue"
+                                }}
+                            >Home</NavLink></li>
+                            <li><NavLink to={{
                                 pathname: "/new-post",
                                 hash: "#submit",
                                 search: "?quick-subit=true"
-                            }}>New Post</Link></li>
+                            }}>New Post</NavLink></li>
                             {/* An important thing to note about this usage of the Link is that by not reloading the entirety of the page,
                             the current state is maintained as only a specific part of the page is reloaded. Our state is now contained via this methodology! */}
                         </ul>
