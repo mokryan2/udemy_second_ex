@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Posts from "./Posts/Posts"
 import NewPost from "./NewPost/NewPost";
 import FullPost from "./FullPost/FullPost";
-import { Route, NavLink } from "react-router-dom";
+import { Route, NavLink, Switch } from "react-router-dom";
 // While technically you could just use the regular Link from react-router-dom, NavLink allows for easier application of styles to a link by designating an
 // "active" class to said link. Additionally, you could also use your own styling as inline styling
 import './Blog.css';
@@ -34,9 +34,13 @@ class Blog extends Component {
                         </ul>
                     </nav>
                 </header>
-                <Route path="/" exact component={Posts} />
-                <Route path="/new-post" exact component={NewPost} />
-                <Route path="/:id" exact component={FullPost} />
+                <Switch>
+                    <Route path="/" exact component={Posts} />
+                    <Route path="/new-post" exact component={NewPost} />
+                    <Route path="/:id" exact component={FullPost} />
+                </Switch>
+                {/* We use the Switch component to load only a SINGLE route of the given options that matches what is picked.
+                This prevents an issue we were having with FullPost and NewPost where the 2 components could be rendered at the same time! */}
             </div>
         );
     }
