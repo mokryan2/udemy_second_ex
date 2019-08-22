@@ -45,8 +45,10 @@ class Posts extends Component {
         //     selectedPostID: id
         // });
         this.props.history.push({ pathname: "/" + id })
-        // Aside from using the state to get the post, you could also implement this method which is granted via the history parameter on the post.
-        // This is what is called "programmatic" navigation. This is something that can be used in place of the Link method.
+        // Aside from using the state to get the post, you could also implement this method which is granted via the history object on the post.
+        // This is what is called "programmatic navigation". This is something that can be used in place of the Link method; this is something meant to be run
+        // after something has finished. By utilizing the functions held within the history object, we can use the push method to a new page onto the stack of pages;
+        // this works because navigation as a whole is just flipping through a stack of pages.
     };
 
     render() {
