@@ -9,10 +9,19 @@ class FullPost extends Component {
     }
 
     componentDidMount() {
+        console.log(this.props);
+        this.loadData();
+    };
+
+    componentDidUpdate() {
+        this.loadData();
+    }
+
+    loadData() {
         if (this.props.match.params.id) {
             // Because we nested the Post component in a Link component, the param needs to be retrieved in a different manner
             // Additionally, we need to change to componentDidMount because it's loading a new route
-            if (!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.match.params.id)) {
+            if (!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !==  + this.props.match.params.id)) {
                 axios.get("/posts/" + this.props.match.params.id)
                     // Note: Normally the full url would be placed here (https://jsonplaceholder.typicode.com), but in this case we established a global URL in index.js that handles it form us
                     .then(response => {
@@ -26,11 +35,12 @@ class FullPost extends Component {
             // Because we would be updating the state, the componentDidMount would cause the request to infinitely run.
             // Additionally, the secondary if statement is checking for the initial state of loadedPost or if the initial post id has changed.
         };
-    };
+    }
     // Because we don't want the get method to trigger immediately, we place the if statement before to prevent any unnecesarry processing.
 
+
     deletePostHandler = () => {
-        axios.delete("/posts/" + this.props.id)
+        axios.delete("/posts/" + this.props.match.params.id)
             // Note: Normally the full url would be placed here (https://jsonplaceholder.typicode.com), but in this case we established a global URL in index.js that handles it form us
             .then(response => {
                 console.log(response, "Oi where did the post go???")
@@ -41,7 +51,7 @@ class FullPost extends Component {
 
     render() {
         let post = <p style={{ textAlign: "center", fontWeight: "bold" }}>Please select a Post!</p>;
-        if (this.props.id) {
+        if (this.props.match.params.id) {
             post = <p style={{ textAlign: "center", fontWeight: "bold" }}>Pulling up your post!</p>;
         }
         if (this.state.loadedPost) {
