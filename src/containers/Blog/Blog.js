@@ -15,7 +15,7 @@ class Blog extends Component {
                     <nav>
                         <ul>
                             <li><NavLink
-                                to="/"
+                                to="/posts/"
                                 exact
                                 activeClassName="my-active"
                                 activeStyle={{
@@ -35,7 +35,7 @@ class Blog extends Component {
                 </header>
                 <Switch>
                     <Route path="/new-post" exact component={NewPost} />
-                    <Route path="/" component={Posts} />
+                    <Route path="/posts" component={Posts} />
                 </Switch>
                 {/* We use the Switch component to load only a SINGLE route of the given options that matches what is picked.
                 This prevents an issue we were having with FullPost and NewPost where the 2 components could be rendered at the same time!

@@ -46,7 +46,7 @@ class Posts extends Component {
         // this.setState({
         //     selectedPostID: id
         // });
-        this.props.history.push({ pathname: "/" + id })
+        this.props.history.push({ pathname: "/posts/" + id })
         // Aside from using the state to get the post, you could also implement this method which is granted via the history object on the post.
         // This is what is called "programmatic navigation". This is something that can be used in place of the Link method; this is something meant to be run
         // after something has finished. By utilizing the functions held within the history object, we can use the push method to a new page onto the stack of pages;
@@ -58,7 +58,7 @@ class Posts extends Component {
         if (!this.state.error) {
             posts = this.state.posts.map(post => {
                 return (
-                    // <Link to={"/" + post.id}       
+                    // <Link to={"/posts/" + post.id}       
                     // // It is important to note that the key value must always be on the outermost piece; you'll get errors if you don't do this...
                     // >
                     <Post
@@ -81,7 +81,7 @@ class Posts extends Component {
                 <section className="Posts">
                     {posts}
                 </section>
-                <Route path="/:id" exact component={FullPost} />
+                <Route path={this.props.match.url + "/:id"} exact component={FullPost} />
             </div>
             // The beauty of using react-router-dom is that you can nest a route within another component! You're not limited to placing these in a single component!
             // Bear in mind that the component must be wrapped at the highest level by the BrowserRouter component.
