@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import axios from "../../../axios";
 import Post from "../../../components/Post/Post";
+import FullPost from "../FullPost/FullPost";
 // import { Link } from "react-router-dom";
+import { Route } from "react-router-dom";
 import "./Posts.css";
 
 class Posts extends Component {
@@ -75,9 +77,13 @@ class Posts extends Component {
         // To account for the possibility of an error, we needed to reorganize this part specifically just to display the error in the event there is an issue with some part of the method.
         // It's always good to account for the possibility of an error because it'll allow the developer (i.e. you) to try and keep an eye on your code
         return (
-            <section className="Posts">
-                {posts}
-            </section>
+            <div>
+                <section className="Posts">
+                    {posts}
+                </section>
+                <Route path="/:id" exact component={FullPost} />
+            </div>
+            // The beauty of using react-router-dom is that you can nest a route within another component! You're not limited to placing these in a single component!
         )
     }
 }
