@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "../../../axios";
 import Post from "../../../components/Post/Post";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import "./Posts.css";
 
 class Posts extends Component {
@@ -41,9 +41,12 @@ class Posts extends Component {
     // The fetching of data is considered a side effect because it's not neccesarrily triggering a rerender of the component; all that it's doing is updating data
 
     postSelectedHandler = (id) => {
-        this.setState({
-            selectedPostID: id
-        });
+        // this.setState({
+        //     selectedPostID: id
+        // });
+        this.props.history.push({ pathname: "/" + id })
+        // Aside from using the state to get the post, you could also implement this method which is granted via the history parameter on the post.
+        // This is what is called "programmatic" navigation. This is something that can be used in place of the Link method.
     };
 
     render() {
@@ -51,17 +54,17 @@ class Posts extends Component {
         if (!this.state.error) {
             posts = this.state.posts.map(post => {
                 return (
-                    <Link
-                        to={"/" + post.id}
+                    // <Link to={"/" + post.id}       
+                    // // It is important to note that the key value must always be on the outermost piece; you'll get errors if you don't do this...
+                    // >
+                    <Post
+                        title={post.title}
+                        author={post.author}
+                        clicked={() => this.postSelectedHandler(post.id)}
                         key={post.id}
-                    // It is important to note that the key value must always be on the outermost piece; you'll get errors if you don't do this...
-                    >
-                        <Post
-                            title={post.title}
-                            author={post.author}
-                            clicked={() => this.postSelectedHandler(post.id)}
-                        />
-                    </Link>)
+                    />
+                    // </Link>
+                )
                 // Because of the componentDidMount method called before the render method, we can now collect the data from the URL
                 // What we then do after changing the state to include all the data from the URL is to save it into a new array to maintain immutable data and then map it out
                 // Finally, the mapped data is then utilized in the Post component by calling the data through the props method and then rendered via the constant posts
