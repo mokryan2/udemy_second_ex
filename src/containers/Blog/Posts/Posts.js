@@ -84,6 +84,7 @@ class Posts extends Component {
                 <Route path="/:id" exact component={FullPost} />
             </div>
             // The beauty of using react-router-dom is that you can nest a route within another component! You're not limited to placing these in a single component!
+            // Bear in mind that the component must be wrapped at the highest level by the BrowserRouter component.
         )
     }
 }

@@ -34,8 +34,8 @@ class Blog extends Component {
                     </nav>
                 </header>
                 <Switch>
-                    <Route path="/" exact component={Posts} />
                     <Route path="/new-post" exact component={NewPost} />
+                    <Route path="/" component={Posts} />
                 </Switch>
                 {/* We use the Switch component to load only a SINGLE route of the given options that matches what is picked.
                 This prevents an issue we were having with FullPost and NewPost where the 2 components could be rendered at the same time!
