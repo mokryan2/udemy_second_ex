@@ -7,6 +7,9 @@ import { Route, NavLink, Switch, Redirect } from "react-router-dom";
 import './Blog.css';
 
 class Blog extends Component {
+    state = {
+        auth: false
+    };
 
     render() {
         return (
@@ -34,7 +37,9 @@ class Blog extends Component {
                     </nav>
                 </header>
                 <Switch>
-                    <Route path="/new-post" exact component={NewPost} />
+                    {this.state.auth ? <Route path="/new-post" exact component={NewPost} /> : null}
+                    {/* What we're doing here is putting in a guard to prevent access to a specific part of the app for those who are not allowed/authorized.
+                Essentially it's making sure the right people have the right access to parts of the app in it's useage */}
                     <Route path="/posts" component={Posts} />
                     <Redirect from="/" to="/posts" />
                     {/* Redirect is used as another route that doesn't render content; instead it changes the url to reach another route that does render content.
