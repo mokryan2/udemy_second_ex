@@ -23,7 +23,9 @@ class NewPost extends Component {
                 console.log(response)
                 this.setState({
                     submitted: true
-                })
+                });
+                // While the this.setState method is good and all, you could also technically use the history parameter thats being gathered by the response to "add a stack"
+                // to the pages. You would do this by replacing this.setState with this.props.history.push("/posts"); you could also just use replace instead of push to achieve the same goal.
             });
     };
     // In this case because the server that's providing the data can't save anything, we are able to at least see that the post is being seen and recorded to the console.
