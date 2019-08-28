@@ -42,6 +42,8 @@ class Blog extends Component {
                 Essentially it's making sure the right people have the right access to parts of the app in it's useage */}
                     <Route path="/posts" component={Posts} />
                     <Route render={() => <h1>There is an error (╯°□°)╯︵ ┻━┻</h1>} />
+                    {/* Something to note is that due to the nature of this route and the redirect, both routes wont work when actively placed next to each other.
+                    Whichever one is placed first is what will be called; both methods are used to catch basically everything! */}
                     <Redirect from="/" to="/posts" />
                     {/* Redirect is used as another route that doesn't render content; instead it changes the url to reach another route that does render content.
                 This could technically be replaced with "<Route path="/" component={Posts} />", but because React-router-dom already has this method we might as
