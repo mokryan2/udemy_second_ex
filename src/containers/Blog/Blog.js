@@ -41,6 +41,7 @@ class Blog extends Component {
                     {/* What we're doing here is putting in a guard to prevent access to a specific part of the app for those who are not allowed/authorized.
                 Essentially it's making sure the right people have the right access to parts of the app in it's useage */}
                     <Route path="/posts" component={Posts} />
+                    <Route render={() => <h1>There is an error (╯°□°)╯︵ ┻━┻</h1>} />
                     <Redirect from="/" to="/posts" />
                     {/* Redirect is used as another route that doesn't render content; instead it changes the url to reach another route that does render content.
                 This could technically be replaced with "<Route path="/" component={Posts} />", but because React-router-dom already has this method we might as
