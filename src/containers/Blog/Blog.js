@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import Posts from "./Posts/Posts"
-import NewPost from "./NewPost/NewPost";
+// import NewPost from "./NewPost/NewPost";
 import { Route, NavLink, Switch, Redirect } from "react-router-dom";
 // While technically you could just use the regular Link from react-router-dom, NavLink allows for easier application of styles to a link by designating an
 // "active" class to said link. Additionally, you could also use your own styling as inline styling
 import './Blog.css';
+
+import asyncComponent from "../../hoc/asyncComponent";
+
+const AsyncNewPost = asyncComponent(() => {
+    return import("./NewPost/NewPost");
+    // The route from the original routing of the NewPost component is used here via the anonymous function to import the route and pass it off to the HOC
+});
 
 class Blog extends Component {
     state = {
@@ -37,7 +44,7 @@ class Blog extends Component {
                     </nav>
                 </header>
                 <Switch>
-                    {this.state.auth ? <Route path="/new-post" exact component={NewPost} /> : null}
+                    {this.state.auth ? <Route path="/new-post" exact component={AsyncNewPost} /> : null}
                     {/* What we're doing here is putting in a guard to prevent access to a specific part of the app for those who are not allowed/authorized.
                 Essentially it's making sure the right people have the right access to parts of the app in it's useage */}
                     <Route path="/posts" component={Posts} />

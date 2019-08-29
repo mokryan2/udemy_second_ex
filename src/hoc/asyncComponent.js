@@ -3,7 +3,7 @@ import React, { Component } from "react";
 const asyncComponent = (importComponent) => {
     return class extends Component {
         state = {
-            component = null
+            component: null
         };
 
         componentDidMount() {
@@ -14,6 +14,8 @@ const asyncComponent = (importComponent) => {
                     });
                 });
         };
+        // The importComponent function will work in tandem with whatever component it is paired with; what this means is that the anonymous function that is set in 
+        // Blog.js will initiate the importComponent function with whatever route that has been included into the function.
 
         render() {
             const C = this.state.component;
