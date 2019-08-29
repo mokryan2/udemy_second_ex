@@ -66,3 +66,20 @@ class Blog extends Component {
 }
 
 export default Blog;
+
+// While the method above is good and all for lazy loading, React has created a lazy() function and Suspense component to simplify this methodology. That code would look like this:
+
+// const NewPost = React.lazy(() => import("./NewPost/NewPost")); <= This is the initial import method to start the lazy loading; note that this is a default export
+// <BrowserRouter>
+//    <React.Fragment>
+//        <Route 
+//            path="/new-post" 
+//            render={()=>(
+//                <Suspense fallback={<div>Loading...</div>}>
+//                    <NewPost/>
+//                </Suspense>
+//            }) 
+//        />
+//    </React.Fragment>
+//</BrowserRouter>
+// You could use the React.Fragment in place of the Aux component as a wrapper. The Suspense component has also been added to allow a simpler version of lazy loading
